@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Museo AR Altar de Bronce del Sacrificio</title>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+	<style type="text/css">
+		body { margin: 0; padding: 12px; font-family: sans-serif; }
+		h1 { text-align: center; font-size: 22px; }
+		p { line-height: 115%; text-align: center; }
+		model-viewer { width: 100%; height: 70vh; }
+		model-viewer button { padding: 12px 20px; font-size: 16px; }
+	</style>
+</head>
+<body>
+<h1>Altar del Sacrificio</h1>
+
+<model-viewer
+  src="01.glb"
+  ios-src="01.usdz"
+  alt="Altar_holocausto"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  ar-scale="fixed"
+  ar-placement="floor"
+  camera-controls>
+  <button slot="ar-button">Ver en tu espacio AR</button>
+</model-viewer>
+
+<p>Si te ha gustado puedes sumarte a este proyecto apoyándonos mensualmente en
+<a href="https://patreon.com/kolorionstudio"><b>https://patreon.com/kolorionstudio</b></a></p>
+
+<p>© KolorionTV. Prohibida su reproducción.</p>
+
+<p><img src="altarsacrificio2_html_62086a12.gif" width="135" height="137" alt="Logo"/></p>
+</body>
+</html>
