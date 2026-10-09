@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Tabernaculo AR - El Arca del Pacto</title>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+	<style type="text/css">
+		body { margin: 0; padding: 12px; font-family: sans-serif; }
+		h1 { text-align: center; font-size: 22px; }
+		p { line-height: 115%; text-align: center; }
+		model-viewer { width: 100%; height: 70vh; }
+		model-viewer button[slot="ar-button"] {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+            }
+	</style>
+</head>
+<body>
+<h1>El Arca del Pacto</h1>
+
+<model-viewer
+  src="06.glb"
+  ios-src="06.usdz"
+  alt="theark"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  ar-scale="fixed"
+  ar-placement="floor"
+  camera-controls
+  environment-image="neutral" 
+  skybox-image=""
+  exposure="1.0"
+  shadow-intensity="0">
+  
+  <button slot="ar-button">Ver en tu espacio AR</button>
+</model-viewer>
+
+<p>Este proyecto es una demo-experimental, la idea es poder transformar cualquier espacio en un "Tabernáculo de Realidad Aumentada (AR)", por esto estamos buscando financiamiento para crear un museo interactivo AR que pueda ser usado en cualquier espacio Adventista (iglesia, parque, etc) por medio de códigos QR.</p> 
+<p>Si quieres apoyarnos puedes patrocinarnos mensualmente por medio de <a href="https://patreon.com/kolorionstudio"><b>https://patreon.com/kolorionstudio</b></a> o pago único con <a href="https://pay.sumup.com/b2c/Q00YBOHK"><b>tarjeta debito/credito</b></a></p>
+
+<p>© KolorionTV. Prohibida su reproducción.</p>
+
+<p><img src="logo.svg" height="300" alt="Logo"/></p>
+</body>
+</html>
