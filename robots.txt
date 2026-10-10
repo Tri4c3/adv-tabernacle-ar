@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://tri4c3.github.io/adv-tabernacle-ar/sitemap.xml
