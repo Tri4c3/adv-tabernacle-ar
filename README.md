@@ -26,4 +26,6 @@ No no lo es, esto solo es una demo experimental gratuita para que otros conozcan
 
 Cristo viene Maranatha
 
-![https://github.com/Tri4c3/adv-tabernacle-ar/blob/main/logo.svg](image-url)
+Nota: aclaramos que todos los modelos son esclusivamente para su uso en nuestra web como realidad aumentada y esta prohibida su reproducción en otra plataformas.
+
+![Kolorion Studio](https://github.com/Tri4c3/adv-tabernacle-ar/blob/main/logo.svg)
