@@ -12,20 +12,20 @@
 		p { line-height: 115%; text-align: center; }
 		model-viewer { width: 100%; height: 70vh; }
 		model-viewer button[slot="ar-button"] {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 24px;
-            background: #ffffff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            cursor: pointer;
-            }
-	
-	  /* ---------- Puntos de anotación ---------- */
+			position: absolute;
+			bottom: 16px;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 12px 24px;
+			font-size: 16px;
+			border: none;
+			border-radius: 24px;
+			background: #ffffff;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+			cursor: pointer;
+		}
+
+		/* ---------- Puntos de anotación ---------- */
 		.hotspot {
 			display: block;
 			width: 24px;
@@ -43,7 +43,14 @@
 			opacity: 0;
 			pointer-events: none;
 		}
-		.hotspot:hover, .hotspot:focus { background: #f5c542; outline: none; }
+		.hotspot:hover, .hotspot:focus { outline: none; filter: brightness(1.2); }
+
+		/* Un color por metal */
+		.oro    { background: #d4a017; }
+		.plata  { background: #c0c0c0; }
+		.bronce { background: #b0702c; }
+		.hierro { background: #5a5a5a; }
+		.barro  { background: #8b5a3c; }
 
 		.hotspot .annotation {
 			position: absolute;
@@ -63,28 +70,15 @@
 			pointer-events: none;
 			transition: opacity 0.2s;
 		}
+		.hotspot .annotation b { display: block; margin-bottom: 2px; }
 		.hotspot:hover .annotation,
 		.hotspot:focus .annotation { opacity: 1; }
-
-		/* Caja de coordenadas (solo modo edición) */
-		#coords {
-			display: none;
-			margin: 8px auto;
-			max-width: 500px;
-			padding: 8px;
-			background: #fff3cd;
-			border-radius: 8px;
-			font-family: monospace;
-			font-size: 13px;
-			text-align: left;
-			white-space: pre-wrap;
-		}		
 	</style>
 </head>
 <body>
 <h1>El Sueño de Nabucodonosor</h1>
 
-<model-viewer
+<model-viewer id="visor"
   src="ND02.glb"
   ios-src="ND02.usdz"
   alt="Estatua Daniel 2"
@@ -97,42 +91,44 @@
   skybox-image=""
   exposure="1.0"
   shadow-intensity="0">
-  
+
   <button slot="ar-button">Ver en tu espacio AR</button>
+
+  <button class="hotspot oro" slot="hotspot-cabeza"
+          data-position="0.016035557039957675m 2.786039764820594m 0.11599852541265339m"
+          data-normal="-0.7882654044780991m -0.1267354297055302m 0.6021426599738087m"
+          data-visibility-attribute="visible">
+    <div class="annotation"><b>Cabeza de Oro</b>Babilonia (605-331 A.C.)</div>
+  </button>
+
+  <button class="hotspot plata" slot="hotspot-pecho"
+          data-position="0.24561511334870473m 2.1898593001011193m 0.1460693709395362m"
+          data-normal="-0.18899348892491197m 0.8658665004118311m 0.4632026172298227m"
+          data-visibility-attribute="visible">
+    <div class="annotation"><b>Pecho y Brazos de Plata</b>Medo-Persia (539-331 A.C.)</div>
+  </button>
+
+  <button class="hotspot bronce" slot="hotspot-vientre"
+          data-position="0.12276066771306202m 1.5644525173331143m 0.23977425753562268m"
+          data-normal="0.36376388739829874m 0.06950931205899434m 0.9288941219331529m"
+          data-visibility-attribute="visible">
+    <div class="annotation"><b>Vientre y muslos de Bronce</b>Grecia (331-168 A.C.)</div>
+  </button>
+
+  <button class="hotspot hierro" slot="hotspot-piernas"
+          data-position="0.09962763413383667m 0.7384619906153471m 0.06025530484743792m"
+          data-normal="-0.3114058863498794m -0.04913916573716863m 0.9490056461040162m"
+          data-visibility-attribute="visible">
+    <div class="annotation"><b>Piernas de Hierro</b>Roma (168 A.C.-476 D.C.)</div>
+  </button>
+
+  <button class="hotspot barro" slot="hotspot-pies"
+          data-position="0.12319080314053309m 0.2584683402035837m 0.1425963159721848m"
+          data-normal="0.29095779863936405m 0.8112399370175839m 0.507181746515627m"
+          data-visibility-attribute="visible">
+    <div class="annotation"><b>Pies de Hierro y Barro cocido</b>Roma papal y la union Iglesia Estado (476 D.C. hasta la 2da Venida)</div>
+  </button>
 </model-viewer>
-<!-- CAMBIA data-position y data-normal con tus coordenadas -->
-  <button class="hotspot" slot="hotspot-cabeza"
-          data-position="0m 1.7m 0.1m" data-normal="0m 0m 1m"
-          data-visibility-attribute="visible">
-    <div class="annotation">Cabeza – texto aquí</div>
-  </button>
-
-  <button class="hotspot" slot="hotspot-pecho"
-          data-position="0m 1.3m 0.2m" data-normal="0m 0m 1m"
-          data-visibility-attribute="visible">
-    <div class="annotation">Pecho – texto aquí</div>
-  </button>
-
-  <button class="hotspot" slot="hotspot-cadera"
-          data-position="0m 0.9m 0.2m" data-normal="0m 0m 1m"
-          data-visibility-attribute="visible">
-    <div class="annotation">Cadera – texto aquí</div>
-  </button>
-
-  <button class="hotspot" slot="hotspot-piernas"
-          data-position="0m 0.5m 0.15m" data-normal="0m 0m 1m"
-          data-visibility-attribute="visible">
-    <div class="annotation">Piernas – texto aquí</div>
-  </button>
-
-  <button class="hotspot" slot="hotspot-pies"
-          data-position="0m 0.1m 0.2m" data-normal="0m 0m 1m"
-          data-visibility-attribute="visible">
-    <div class="annotation">Pies – texto aquí</div>
-  </button>
-</model-viewer>
-
-<div id="coords"></div>
 
 <p>Este proyecto es una demo-experimental, la idea es poder transformar cualquier espacio en un "Tabernáculo de Realidad Aumentada (AR)", por esto estamos buscando financiamiento para crear un museo interactivo AR que pueda ser usado en cualquier espacio Adventista (iglesia, parque, etc) por medio de códigos QR.</p> 
 <p>Si quieres apoyarnos puedes patrocinarnos mensualmente por medio de <a href="https://patreon.com/kolorionstudio"><b>https://patreon.com/kolorionstudio</b></a> o pago único con <a href="https://pay.sumup.com/b2c/Q00YBOHK"><b>tarjeta debito/credito</b></a></p>
@@ -140,24 +136,5 @@
 <p>© KolorionTV. Prohibida su reproducción.</p>
 
 <p><img src="logo.svg" height="300" alt="Logo"/></p>
-<script>
-	// MODO EDICIÓN: abre la página con ?edit al final de la URL
-	// Ej: https://tri4c3.github.io/adv-tabernacle-ar/daniel2.html?edit
-	if (location.search.includes('edit')) {
-		const visor = document.getElementById('visor');
-		const caja = document.getElementById('coords');
-		caja.style.display = 'block';
-		caja.textContent = 'Modo edición: toca un punto del modelo.';
-
-		visor.addEventListener('click', (e) => {
-			const r = visor.positionAndNormalFromPoint(e.clientX, e.clientY);
-			if (r) {
-				caja.textContent =
-					'data-position="' + r.position.toString() + '"\n' +
-					'data-normal="' + r.normal.toString() + '"';
-			}
-		});
-	}
-</script>
 </body>
 </html>
