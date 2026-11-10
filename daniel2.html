@@ -140,5 +140,24 @@
 <p>© KolorionTV. Prohibida su reproducción.</p>
 
 <p><img src="logo.svg" height="300" alt="Logo"/></p>
+<script>
+	// MODO EDICIÓN: abre la página con ?edit al final de la URL
+	// Ej: https://tri4c3.github.io/adv-tabernacle-ar/daniel2.html?edit
+	if (location.search.includes('edit')) {
+		const visor = document.getElementById('visor');
+		const caja = document.getElementById('coords');
+		caja.style.display = 'block';
+		caja.textContent = 'Modo edición: toca un punto del modelo.';
+
+		visor.addEventListener('click', (e) => {
+			const r = visor.positionAndNormalFromPoint(e.clientX, e.clientY);
+			if (r) {
+				caja.textContent =
+					'data-position="' + r.position.toString() + '"\n' +
+					'data-normal="' + r.normal.toString() + '"';
+			}
+		});
+	}
+</script>
 </body>
 </html>
