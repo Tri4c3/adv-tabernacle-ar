@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Tabernaculo AR - La vision de Daniel 2</title>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+	<style type="text/css">
+		body { margin: 0; padding: 12px; font-family: sans-serif; }
+		h1 { text-align: center; font-size: 22px; }
+		p { line-height: 115%; text-align: center; }
+		model-viewer { width: 100%; height: 70vh; }
+		model-viewer button[slot="ar-button"] {
+			position: absolute;
+			bottom: 16px;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 12px 24px;
+			font-size: 16px;
+			border: none;
+			border-radius: 24px;
+			background: #ffffff;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+			cursor: pointer;
+		}
+
+		/* ---------- Puntos de anotación ---------- */
+		.hotspot {
+			display: block;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			border: 2px solid #fff;
+			background: #d4a017;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+			cursor: pointer;
+			padding: 0;
+			position: relative;
+			transition: opacity 0.3s;
+		}
+		.hotspot:not([data-visible]) {
+			opacity: 0;
+			pointer-events: none;
+		}
+		.hotspot:hover, .hotspot:focus { background: #f5c542; outline: none; }
+
+		.hotspot .annotation {
+			position: absolute;
+			left: 32px;
+			top: -4px;
+			width: max-content;
+			max-width: 220px;
+			padding: 8px 12px;
+			border-radius: 8px;
+			background: rgba(255,255,255,0.96);
+			color: #222;
+			font-size: 14px;
+			line-height: 1.3;
+			text-align: left;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.2s;
+		}
+		.hotspot:hover .annotation,
+		.hotspot:focus .annotation { opacity: 1; }
+
+		/* Caja de coordenadas (solo modo edición) */
+		#coords {
+			display: none;
+			margin: 8px auto;
+			max-width: 500px;
+			padding: 8px;
+			background: #fff3cd;
+			border-radius: 8px;
+			font-family: monospace;
+			font-size: 13px;
+			text-align: left;
+			white-space: pre-wrap;
+		}
+	</style>
+</head>
+<body>
+<h1>El Sueño de Nabucodonosor</h1>
+
+<model-viewer id="visor"
+  src="ND02.glb"
+  ios-src="ND02.usdz"
+  alt="Estatua Daniel 2"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  ar-scale="fixed"
+  ar-placement="floor"
+  camera-controls
+  environment-image="neutral" 
+  skybox-image=""
+  exposure="1.0"
+  shadow-intensity="0">
+
+  <button slot="ar-button">Ver en tu espacio AR</button>
+
+  <!-- CAMBIA data-position y data-normal con tus coordenadas -->
+  <button class="hotspot" slot="hotspot-cabeza"
+          data-position="0m 1.7m 0.1m" data-normal="0m 0m 1m"
+          data-visibility-attribute="visible">
+    <div class="annotation">Cabeza – texto aquí</div>
+  </button>
+
+  <button class="hotspot" slot="hotspot-pecho"
+          data-position="0m 1.3m 0.2m" data-normal="0m 0m 1m"
+          data-visibility-attribute="visible">
+    <div class="annotation">Pecho – texto aquí</div>
+  </button>
+
+  <button class="hotspot" slot="hotspot-cadera"
+          data-position="0m 0.9m 0.2m" data-normal="0m 0m 1m"
+          data-visibility-attribute="visible">
+    <div class="annotation">Cadera – texto aquí</div>
+  </button>
+
+  <button class="hotspot" slot="hotspot-piernas"
+          data-position="0m 0.5m 0.15m" data-normal="0m 0m 1m"
+          data-visibility-attribute="visible">
+    <div class="annotation">Piernas – texto aquí</div>
+  </button>
+
+  <button class="hotspot" slot="hotspot-pies"
+          data-position="0m 0.1m 0.2m" data-normal="0m 0m 1m"
+          data-visibility-attribute="visible">
+    <div class="annotation">Pies – texto aquí</div>
+  </button>
+</model-viewer>
+
+<div id="coords"></div>
+
+<p>Este proyecto es una demo-experimental, ... (tu texto igual que antes)</p>
+<p>© KolorionTV. Prohibida su reproducción.</p>
+<p><img src="logo.svg" height="300" alt="Logo"/></p>
+
+<script>
+	// MODO EDICIÓN: abre la página con ?edit al final de la URL
+	// Ej: https://tri4c3.github.io/adv-tabernacle-ar/daniel2.html?edit
+	if (location.search.includes('edit')) {
+		const visor = document.getElementById('visor');
+		const caja = document.getElementById('coords');
+		caja.style.display = 'block';
+		caja.textContent = 'Modo edición: toca un punto del modelo.';
+
+		visor.addEventListener('click', (e) => {
+			const r = visor.positionAndNormalFromPoint(e.clientX, e.clientY);
+			if (r) {
+				caja.textContent =
+					'data-position="' + r.position.toString() + '"\n' +
+					'data-normal="' + r.normal.toString() + '"';
+			}
+		});
+	}
+</script>
+</body>
+</html>
